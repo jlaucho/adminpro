@@ -15,7 +15,10 @@ import { RouterModule } from '@angular/router';
         SidebarComponent,
         BreadcrumbsComponent
     ],
-    imports: [ CommonModule, RouterModule ],
+    imports: [
+        CommonModule,
+        RouterModule
+        ],
     exports: [
         NopagefoundComponent,
         HeaderComponent,

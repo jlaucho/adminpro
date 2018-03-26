@@ -4,12 +4,14 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: js
 */
-$(function() {
-    "use strict";
+function cargaPrincipal(){
+
     $(function() {
-        $(".preloader").fadeOut();
-    });
-    jQuery(document).on('click', '.mega-dropdown', function(e) {
+        "use strict";
+        $(function() {
+            $(".preloader").fadeOut();
+        });
+        jQuery(document).on('click', '.mega-dropdown', function(e) {
         e.stopPropagation()
     });
     // ============================================================== 
@@ -26,7 +28,7 @@ $(function() {
             $("body").removeClass("mini-sidebar");
             $('.navbar-brand span').show();
         }
-
+        
         var height = ((window.innerHeight > 0) ? window.innerHeight : this.screen.height) - 1;
         height = height - topOffset;
         if (height < 1) height = 1;
@@ -54,7 +56,7 @@ $(function() {
             
         }
     });
-
+    
     // this is for close icon when navigation open in mobile view
     $(".nav-toggler").click(function() {
         $("body").toggleClass("show-sidebar");
@@ -78,7 +80,7 @@ $(function() {
     $('.floating-labels .form-control').on('focus blur', function(e) {
         $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
     }).trigger('blur');
-
+    
     // ============================================================== 
     // Auto select left navbar
     // ============================================================== 
@@ -114,7 +116,7 @@ $(function() {
     $(function() {
         $('#sidebarnav').AdminMenu();
     });
-
+    
     // ============================================================== 
     // Perfact scrollbar
     // ============================================================== 
@@ -130,9 +132,9 @@ $(function() {
     $(".list-task li label").click(function() {
         $(this).toggleClass("task-done");
     });
-
     
-
+    
+    
     // ============================================================== 
     // Collapsable cards
     // ==============================================================
@@ -140,7 +142,7 @@ $(function() {
         e.preventDefault();
         $(this).closest('.card').find('[data-action="collapse"] i').toggleClass('ti-minus ti-plus');
         $(this).closest('.card').children('.card-body').collapse('toggle');
-
+        
     });
     // Toggle fullscreen
     $('a[data-action="expand"]').on('click', function(e) {
@@ -153,5 +155,6 @@ $(function() {
     $('a[data-action="close"]').on('click', function() {
         $(this).closest('.card').removeClass().slideUp('fast');
     });
-
+    
 });
+};

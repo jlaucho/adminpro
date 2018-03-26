@@ -50,7 +50,7 @@ export class SettingsService {
   colocarCheck() {
     let selectores: any = document.getElementsByClassName('selector');
     for ( let ref of selectores ) {
-      if ( ref.getAttribute('data-theme') === this.ajustes.tema ){
+      if ( ref.getAttribute('data-theme') === this.ajustes.tema ) {
         ref.classList.add('working');
         break;
       }

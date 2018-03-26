@@ -11,6 +11,7 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 import { ChartsModule } from 'ng2-charts';
 import { GraficasComponent } from '../components/graficas/graficas.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromesasComponent } from './promesas/promesas.component';
 
 
 
@@ -22,7 +23,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
         Graficas1Component,
         IncrementadorComponent,
         GraficasComponent,
-        AccountSettingsComponent
+        AccountSettingsComponent,
+        PromesasComponent
     ],
     imports: [
         CommonModule,
