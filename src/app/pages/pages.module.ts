@@ -12,6 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 import { GraficasComponent } from '../components/graficas/graficas.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 
@@ -24,7 +25,8 @@ import { PromesasComponent } from './promesas/promesas.component';
         IncrementadorComponent,
         GraficasComponent,
         AccountSettingsComponent,
-        PromesasComponent
+        PromesasComponent,
+        RxjsComponent
     ],
     imports: [
         CommonModule,
