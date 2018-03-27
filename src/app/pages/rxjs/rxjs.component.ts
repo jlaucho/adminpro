@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs/Rx';
-import { setInterval } from 'timers';
-import 'rxjs/add/operator/retry';
 
 @Component({
   selector: 'app-rxjs',
@@ -30,7 +28,7 @@ export class RxjsComponent implements OnInit {
     });
 
     obs
-    .retry()
+    .retry(2)
     .subscribe(
       numero => {
       console.log( 'Numero', numero );
