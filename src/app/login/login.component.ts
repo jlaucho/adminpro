@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
+import { UsuarioService } from '../services/usuario/usuario.service';
+import { Login } from '../models/login.models';
+import Swal from 'sweetalert2';
 declare function cargaPrincipal();
 
 @Component({
@@ -9,14 +13,37 @@ declare function cargaPrincipal();
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private router: Router ) { }
+  forma: FormGroup;
+
+  constructor( private router: Router,
+               private _usuarioService: UsuarioService ) { }
 
   ngOnInit() {
     cargaPrincipal();
+    this.forma = new FormGroup({
+      usuario: new FormControl( null, [Validators.required, Validators.email] ),
+      password: new FormControl( null, [Validators.required] ),
+      recuerdame: new FormControl( false )
+    });
   }
 
   ingresar() {
-    this.router.navigate(['/dashboard']);
+    console.log( this.forma.value );
+    // return;
+    if ( this.forma.invalid ) {
+      Swal('Importante', 'Verifique los datoes he intente de nuevo!', 'warning');
+      return;
+    }
+
+    let login = new Login( this.forma.value.usuario, this.forma.value.password  );
+    this._usuarioService.login( login )
+      .subscribe(( respuesta ) => {
+        if ( respuesta.ok ) {
+          console.log('Se logueo bien');
+        }else{
+          console.log('Problemas para entrar');
+        }
+      });
   }
 
 }

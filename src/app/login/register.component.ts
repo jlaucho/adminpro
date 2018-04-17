@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
+import { Router } from '@angular/router';
+
 // import { HttpClient } from '@angular/common/http';
 
 declare function cargaPrincipal();
@@ -17,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   forma: FormGroup;
 
-  constructor( private _usuario: UsuarioService ) { }
+  constructor( private _usuario: UsuarioService,
+               private router: Router ) { }
 
   ngOnInit() {
     cargaPrincipal();
@@ -30,13 +33,13 @@ export class RegisterComponent implements OnInit {
       condiciones: new FormControl( false )
     }, {validators: this.sonIguales( 'password', 'password2' ) });
 
-    this.forma.setValue({
-      nombre: 'Jesus Laucho',
-      email: 'jlaucho@gmail.com',
-      password: '123456',
-      password2: '123456',
-      condiciones: true
-    });
+    // this.forma.setValue({
+    //   nombre: 'Jesus Laucho',
+    //   email: 'jlaucho@gmail.com',
+    //   password: '123456',
+    //   password2: '123456',
+    //   condiciones: true
+    // });
   }
 
   sonIguales( campo1: string, campo2: string ) {
@@ -54,8 +57,6 @@ export class RegisterComponent implements OnInit {
   }
 
   registrarUsuario() {
-    console.log(this.forma.value);
-    console.log( "forma", this.forma.valid);
     if ( this.forma.invalid ) {
       console.log('Forma invalida');
       return;
@@ -67,8 +68,12 @@ export class RegisterComponent implements OnInit {
     }
     let usuario = new Usuario( this.forma.value.nombre, this.forma.value.email, this.forma.value.password  );
     this._usuario.crearUsuario( usuario )
-      .subscribe(( resp ) => {
-        console.log( resp );
+      .subscribe(( resp: any ) => {
+        if ( resp.ok ) {
+          console.log( resp );
+          this.router.navigate(['/login']);
+          Swal('Importante', 'El usuario: ' + resp.usuario.email + ' ha sido creado correctamente!', 'success');
+        }
       });
     console.log('Forma Valida');
   }
