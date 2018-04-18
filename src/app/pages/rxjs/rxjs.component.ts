@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 // tslint:disable-next-line:import-blacklist
-import { Observable } from 'rxjs/Rx';
+import { Observable, Subscription } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styles: []
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy {
+
+  subscription: Subscription;
 
   constructor() {
-    this.regresaObservable()
+    this.subscription = this.regresaObservable()
     .subscribe(
       numero => {
       console.log( 'Numero', numero );
@@ -36,15 +38,15 @@ export class RxjsComponent implements OnInit {
           valor: contador
         };
         observar.next( salida );
-        if ( contador === 3 ) {
-          clearInterval ( intervalo );
-          observar.complete();
-        }
+        // if ( contador === 3 ) {
+        //   clearInterval ( intervalo );
+        //   observar.complete();
+        // }
         // if ( contador === 2 ) {
         //   observar.error ( 'Auxilio' );
         //   // contador = 0;
         // }
-      }, 1000);
+      }, 500);
     })
     .retry(2)
     .map( (resp: any) => {
@@ -60,6 +62,10 @@ export class RxjsComponent implements OnInit {
         return true;
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
