@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 // Modulos
 import { PagesModule } from './pages/pages.module';
 import { ServicesModule } from './services/services.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 // rutas
 import { APP_ROUTES } from './app.routes';
@@ -12,7 +15,6 @@ import { APP_ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
-import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { FormsModule } from '@angular/forms';
     APP_ROUTES,
     PagesModule,
     FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     ServicesModule
   ],
   providers: [],

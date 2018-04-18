@@ -13,15 +13,15 @@ export class BreadcrumbsComponent implements OnInit {
 
   constructor( private router: Router, private title: Title, public meta: Meta ) {
     this.getDataRoute()
-      .subscribe( event => {
-        this.titulo = event.titulo;
-        this.title.setTitle( event.titulo );
+      .subscribe( data => {
+        this.titulo = data.titulo;
+        this.title.setTitle( data.titulo );
 
         // actualizando los metadatos
 
         let metadatos: MetaDefinition[] = [{
           name: 'description',
-          content: event.titulo
+          content: data.titulo
         },
         {
           name: 'keyboard',
