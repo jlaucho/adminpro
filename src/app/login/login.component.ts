@@ -37,10 +37,10 @@ export class LoginComponent implements OnInit {
 
     let login = new Login( this.forma.value.usuario, this.forma.value.password  );
     this._usuarioService.login( login )
-      .subscribe(( respuesta ) => {
+      .subscribe(( respuesta: any ) => {
         if ( respuesta.ok ) {
           console.log('Se logueo bien');
-        }else{
+        } else {
           console.log('Problemas para entrar');
         }
       });
