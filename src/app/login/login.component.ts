@@ -13,6 +13,8 @@ declare function cargaPrincipal();
 })
 export class LoginComponent implements OnInit {
 
+  recuerdame: boolean;
+  email: string;
   forma: FormGroup;
 
   constructor( private router: Router,
@@ -25,25 +27,26 @@ export class LoginComponent implements OnInit {
       password: new FormControl( null, [Validators.required] ),
       recuerdame: new FormControl( false )
     });
+
+    this.email = localStorage.getItem('email') || '';
+    if ( localStorage.getItem('email') ) {
+      this.recuerdame = true;
+      // this.email = localStorage.getItem('email');
+    }
   }
 
   ingresar() {
     console.log( this.forma.value );
     // return;
     if ( this.forma.invalid ) {
-      Swal('Importante', 'Verifique los datoes he intente de nuevo!', 'warning');
+      Swal('Importante', 'Verifique los datos he intente de nuevo!', 'warning');
       return;
     }
 
-    let login = new Login( this.forma.value.usuario, this.forma.value.password  );
+    let login = new Login( this.forma.value.usuario, this.forma.value.password, this.forma.value.recuerdame  );
     this._usuarioService.login( login )
-      .subscribe(( respuesta: any ) => {
-        if ( respuesta.ok ) {
-          console.log('Se logueo bien');
-        } else {
-          console.log('Problemas para entrar');
-        }
-      });
-  }
-
+      .subscribe(( respuesta ) => {
+          this.router.navigate(['/dashboard']);
+        });
+      }
 }

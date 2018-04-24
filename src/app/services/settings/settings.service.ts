@@ -21,11 +21,11 @@ export class SettingsService {
     if ( localStorage.getItem('ajustes') ) {
       this.ajustes = JSON.parse(localStorage.getItem('ajustes'));
       this.aplicarTema ( this.ajustes.tema );
-      console.log('Cargando del storage');
+      // console.log('Cargando del storage');
       // this.aplicarCheck( this.ajustes.temaURL );
     } else {
       this.aplicarTema ( this.ajustes.tema );
-      console.log( 'Usando Valores por defecto' );
+      // console.log( 'Usando Valores por defecto' );
     }
   }
 
