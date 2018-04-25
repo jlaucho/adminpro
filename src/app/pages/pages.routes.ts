@@ -19,13 +19,13 @@ const pagesRoutes: Routes = [
         component: PagesComponent,
         canActivate: [ LoginGuardsGuard ],
         children: [
-          { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
+          { path: 'dashboard', component: DashboardComponent, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Dashboard' } },
           { path: 'progress', component: ProgressComponent, canActivate: [ LoginGuardsGuard ] , data: { titulo: 'Progreso' } },
           { path: 'profile', component: ProfileComponent, canActivate: [ LoginGuardsGuard ] , data: { titulo: 'Mi perfil' } },
-          { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
-          { path: 'grafica1', component: Graficas1Component, data: { titulo: 'Graficas' } },
-          { path: 'rxjs', component: RxjsComponent, data: { titulo: 'Observables' } },
-          { path: 'account-setting', component: AccountSettingsComponent, data: { titulo: 'Ajustes' } },
+          { path: 'promesas', component: PromesasComponent, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Promesas' } },
+          { path: 'grafica1', component: Graficas1Component, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Graficas' } },
+          { path: 'rxjs', component: RxjsComponent, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Observables' } },
+          { path: 'account-setting', component: AccountSettingsComponent, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Ajustes' } },
           { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class UsuarioService {
 
   usuario: Usuario;
+  token: string;
 
   constructor( private http: HttpClient,
                private router: Router ) {
@@ -19,7 +20,7 @@ export class UsuarioService {
 
    cargarStorage() {
     this.usuario = JSON.parse(localStorage.getItem('usuario')) || '';
-    console.log( this.usuario );
+    this.token = localStorage.getItem('token') || '';
    }
 
    logOut() {
