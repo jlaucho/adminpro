@@ -1,4 +1,8 @@
+import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../../services/service.index';
+import { Usuario } from '../../models/usuario.model';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  usuario: Usuario;
+
+  constructor(
+        private _usuarioService: UsuarioService
+  ) { }
 
   ngOnInit() {
+    this.usuario = this._usuarioService.usuario;
+  }
+
+  guardar ( usuario: Usuario ) {
+    this.usuario.nombre = usuario.nombre;
+    // Se verifica que el usuario no venga de google
+    if ( !this.usuario.google ) {
+      this.usuario.email = usuario.email;
+    }
+
+    this._usuarioService.actualizarUsuario( this.usuario )
+         .subscribe();
   }
 
 }

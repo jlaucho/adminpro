@@ -6,33 +6,33 @@ import { URL_SERVICIOS } from '../config/config';
 })
 export class ImagenPipe implements PipeTransform {
 
-  transform(img: string, tipo: string = 'usuarios'): any {
+  transform(img: string, tipo: string = 'usuario'): any {
     let url = `${ URL_SERVICIOS }/img/`;
     if ( !img ) {
-      return `${ url }/${ tipo }/default`;
+      return `${ url }/usuarios/default`;
     }
 
     if ( img.indexOf('https') > 0 ) {
       return img;
     }
-    return `${ url }/${ tipo }/${ img }`;
-    // let imagen = '';
+    // return `${ url }/${ tipo }/${ img }`;
 
-    // switch ( tipo ) {
-    //   case 'usuarios':
+    switch ( tipo ) {
+      case 'usuario':
+        url += 'usuarios/' + img;
+        break;
+        case 'hospital':
+        url += 'hospitales/' + img;
+        break;
+        case 'medico':
+        url += 'medicos/' + img;
+        break;
 
-    //     break;
-    //     case 'hospitales':
-
-    //     break;
-    //     case 'medicos':
-
-    //     break;
-
-    //   default:
-    //     imagen = `${ url }/${ tipo }/default`;
-    //     break;
-    // }
+      default:
+        url = `${ url }/usuarios/default`;
+        break;
+    }
+    return url;
 
   }
 
