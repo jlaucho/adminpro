@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { URL_SERVICIOS } from '../../config/config';
 
 @Injectable()
 export class SubirArchivoService {
@@ -24,6 +25,9 @@ export class SubirArchivoService {
           }
         }
       };
+      let url = `${ URL_SERVICIOS }/upload/${ tipo }/${ id }`;
+      xhr.open('PUT', url, true);
+      xhr.send( formData );
     });
   }
 }
