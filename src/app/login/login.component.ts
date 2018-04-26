@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       this.recuerdame = true;
       // this.email = localStorage.getItem('email');
     }
+    
     if ( this._usuarioService.usuario.nombre.length > 1 && this._usuarioService.token.length > 15 ){
       this.router.navigate(['/dashboard']);
     }
