@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
 import { UsuarioService } from '../services/usuario/usuario.service';
 import { Login } from '../models/login.models';
 import Swal from 'sweetalert2';
+import { Usuario } from '../models/usuario.model';
 declare function cargaPrincipal();
 
 @Component({
@@ -33,8 +34,17 @@ export class LoginComponent implements OnInit {
       this.recuerdame = true;
       // this.email = localStorage.getItem('email');
     }
-    
-    if ( this._usuarioService.usuario.nombre.length > 1 && this._usuarioService.token.length > 15 ){
+    let usuario: Usuario = JSON.parse(localStorage.getItem('usuario')) || '';
+    let nombre: string;
+      if ( !usuario.nombre ) {
+        nombre = '';
+      } else {
+        nombre = usuario.nombre;
+      }
+
+    let token = this._usuarioService.token || '';
+    console.log( nombre, token );
+    if ( nombre.length > 1 && token.length > 15 ) {
       this.router.navigate(['/dashboard']);
     }
   }
