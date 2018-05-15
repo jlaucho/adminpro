@@ -18,11 +18,12 @@ export class ProfileComponent implements OnInit {
   imagenTemp: string;
 
   constructor(
-        private _usuarioService: UsuarioService
-  ) { }
-
+        public _usuarioService: UsuarioService
+  ) {}
+  
   ngOnInit() {
     this.usuario = this._usuarioService.usuario;
+    console.log( this.usuario );
   }
 
   guardar ( usuario: Usuario ) {

@@ -10,6 +10,7 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardsGuard } from '../services/guards/login-guards.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 
 
@@ -26,6 +27,8 @@ const pagesRoutes: Routes = [
           { path: 'grafica1', component: Graficas1Component, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Graficas' } },
           { path: 'rxjs', component: RxjsComponent, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Observables' } },
           { path: 'account-setting', component: AccountSettingsComponent, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Ajustes' } },
+        //   Mantenimientos
+          { path: 'usuarios', component: UsuarioComponent, canActivate: [ LoginGuardsGuard ], data: { titulo: 'Usuarios' } },
           { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }

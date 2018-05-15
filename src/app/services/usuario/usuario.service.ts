@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from './../../models/usuario.model';
 import { Login } from './../../models/login.models';
 import { URL_SERVICIOS } from './../../config/config';
 import { Router } from '@angular/router';
@@ -11,21 +10,27 @@ import { Usuario } from '../../models/usuario.model';
 
 
 @Injectable()
-export class UsuarioService {
+export class UsuarioService implements OnInit{
 
   usuario: Usuario;
   token: string;
 
-  constructor( private http: HttpClient,
-               private router: Router,
-               private subir: SubirArchivoService ) {
-                this.cargarStorage();
+  constructor( public http: HttpClient,
+               public router: Router,
+               public subir: SubirArchivoService ) {
+               this.cargarStorage();
+              }
+              
+  ngOnInit(){
+      // this.cargarStorage();          
+      console.log( this.usuario );
    }
 
    cargarStorage() {
     this.usuario = JSON.parse(localStorage.getItem('usuario')) || '';
     this.token = localStorage.getItem('token') || '';
    }
+
 
    logOut() {
      localStorage.removeItem('token');
@@ -89,6 +94,11 @@ export class UsuarioService {
           Swal('Actualizacion', 'Error al intentar actualizar archivo', 'error');
           return;
         });
+   }
+
+   cargarUsuarios(desde: number = 0 ){
+     let url = `${ URL_SERVICIOS }/usuarios?desde=${ desde }`;
+     return this.http.get( url );
    }
 
 }
